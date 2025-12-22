@@ -1,0 +1,39 @@
+{
+    "app-id": "org.zachvlat.plasmalayouts",
+    "runtime": "org.kde.Platform",
+    "runtime-version": "6.8",
+    "sdk": "org.kde.Sdk",
+    "command": "appplasma_layouts",
+    "finish-args": [
+        "--share=ipc",
+        "--socket=x11",
+        "--socket=wayland",
+        "--device=dri",
+        "--filesystem=home",
+        "--persist=.config"
+    ],
+    "modules": [
+        {
+            "name": "plasma_layouts",
+            "buildsystem": "cmake-ninja",
+            "builddir": true,
+            "post-install": [
+                "install -Dm644 ../org.zachvlat.plasmalayouts.desktop /app/share/applications/org.zachvlat.plasmalayouts.desktop",
+                "install -Dm644 ../org.zachvlat.plasmalayouts.appdata.xml /app/share/metainfo/org.zachvlat.plasmalayouts.appdata.xml",
+                "install -Dm644 ../assets/icon.svg /app/share/icons/hicolor/scalable/apps/org.zachvlat.plasmalayouts.svg",
+                "install -Dm644 ../assets/icon-64.png /app/share/icons/hicolor/64x64/apps/org.zachvlat.plasmalayouts.png",
+                "install -Dm644 ../assets/icon-128.png /app/share/icons/hicolor/128x128/apps/org.zachvlat.plasmalayouts.png",
+                "install -Dm644 ../assets/icon-256.png /app/share/icons/hicolor/256x256/apps/org.zachvlat.plasmalayouts.png",
+                "install -Dm644 ../assets/icon-512.png /app/share/icons/hicolor/512x512/apps/org.zachvlat.plasmalayouts.png",
+                "update-desktop-database",
+                "ls -la /app/bin/assets/"
+            ],
+            "sources": [
+                {
+                    "type": "dir",
+                    "path": "."
+                }
+            ]
+        }
+    ]
+}

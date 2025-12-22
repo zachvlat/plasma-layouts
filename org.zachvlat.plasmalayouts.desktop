@@ -1,0 +1,34 @@
+[Desktop Entry]
+Type=Application
+Name=Plasma Layout Manager
+Name[de]=Plasma Layout-Manager
+Name[fr]=Gestionnaire de mises en page Plasma
+Name[es]=Gestor de diseños de Plasma
+Name[pt_BR]=Gerenciador de Layouts do Plasma
+GenericName=Desktop Layout Manager
+GenericName[de]=Desktop-Layout-Manager
+GenericName[fr]=Gestionnaire de mises en page du bureau
+GenericName[es]=Gestor de diseños de escritorio
+GenericName[pt_BR]=Gerenciador de Layouts da Área de Trabalho
+Comment=Manage and apply KDE Plasma desktop layouts
+Comment[de]=KDE-Plasma-Desktop-Layouts verwalten und anwenden
+Comment[fr]=Gérer et appliquer les mises en page du bureau KDE Plasma
+Comment[es]=Gestionar y aplicar diseños de escritorio KDE Plasma
+Comment[pt_BR]=Gerenciar e aplicar layouts da área de trabalho KDE Plasma
+Exec=appplasma_layouts
+Icon=org.zachvlat.plasmalayouts
+Terminal=false
+StartupNotify=true
+Categories=Qt;KDE;Settings;DesktopSettings;
+Keywords=plasma;kde;desktop;layout;theme;configuration;
+MimeType=
+StartupWMClass=plasma_layouts
+Actions=Configure;
+
+[Desktop Action Configure]
+Name=Configure Layouts
+Name[de]=Layouts konfigurieren
+Name[fr]=Configurer les mises en page
+Name[es]=Configurar diseños
+Name[pt_BR]=Configurar layouts
+Exec=appplasma_layouts

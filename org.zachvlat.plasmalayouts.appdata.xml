@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+  <id>org.zachvlat.plasmalayouts</id>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>GPL-3.0+</project_license>
+  <name>Plasma Layout Manager</name>
+  <summary>Manage and apply KDE Plasma desktop layouts</summary>
+  
+  <description>
+    <p>
+      Plasma Layout Manager is a simple yet powerful tool that allows you to easily manage and switch between different KDE Plasma desktop layouts. With just a few clicks, you can completely transform the look and feel of your desktop.
+    </p>
+    <p>
+      The application comes with several pre-configured layouts including:
+    </p>
+    <ul>
+      <li>Cosmic - Modern space-themed desktop with cosmic aesthetics</li>
+      <li>Ubuntu - Classic Ubuntu-style dock and panel layout</li>
+      <li>Windows - Windows 11 inspired taskbar and start menu</li>
+      <li>WM - Window manager focused minimal layout</li>
+    </ul>
+    <p>
+      Each layout is carefully crafted to provide a unique desktop experience while maintaining the flexibility and power of KDE Plasma. The application automatically creates backups of your current configuration before applying any changes, ensuring you can always return to your previous setup.
+    </p>
+  </description>
+  
+  <launchable type="desktop-id">org.zachvlat.plasmalayouts.desktop</launchable>
+  
+  <screenshots>
+    <screenshot type="default">
+      <image>https://raw.githubusercontent.com/example/plasma-layouts/main/screenshots/main-window.png</image>
+      <caption>Main interface showing available layouts</caption>
+    </screenshot>
+    <screenshot>
+      <image>https://raw.githubusercontent.com/example/plasma-layouts/main/screenshots/cosmic-layout.png</image>
+      <caption>Cosmic layout in action</caption>
+    </screenshot>
+    <screenshot>
+      <image>https://raw.githubusercontent.com/example/plasma-layouts/main/screenshots/ubuntu-layout.png</image>
+      <caption>Ubuntu-style layout applied</caption>
+    </screenshot>
+  </screenshots>
+  
+  <url type="homepage">https://github.com/example/plasma-layouts</url>
+  <url type="bugtracker">https://github.com/example/plasma-layouts/issues</url>
+  <url type="help">https://github.com/example/plasma-layouts/wiki</url>
+  
+  <provides>
+    <binary>appplasma_layouts</binary>
+  </provides>
+  
+  <releases>
+    <release version="0.1" date="2025-01-01">
+      <description>
+        <p>Initial release with support for 4 pre-configured layouts:</p>
+        <ul>
+          <li>Cosmic theme layout</li>
+          <li>Ubuntu-style layout</li>
+          <li>Windows 11-inspired layout</li>
+          <li>Minimal WM layout</li>
+        </ul>
+        <p>Features:</p>
+        <ul>
+          <li>Automatic backup creation</li>
+          <li>Responsive user interface</li>
+          <li>Multi-language support</li>
+          <li>Flatpak support</li>
+        </ul>
+      </description>
+    </release>
+  </releases>
+  
+  <content_rating type="oars-1.1"/>
+  
+  <developer_name>Plasma Layout Manager Team</developer_name>
+  
+  <categories>
+    <category>Qt</category>
+    <category>KDE</category>
+    <category>Settings</category>
+    <category>DesktopSettings</category>
+  </categories>
+  
+  <keywords>
+    <keyword>plasma</keyword>
+    <keyword>kde</keyword>
+    <keyword>desktop</keyword>
+    <keyword>layout</keyword>
+    <keyword>theme</keyword>
+    <keyword>configuration</keyword>
+  </keywords>
+  
+  <requires>
+    <display_length compare="ge">360</display_length>
+  </requires>
+  
+  <recommends>
+    <control>pointing</control>
+    <control>keyboard</control>
+    <display_length compare="ge">800</display_length>
+  </recommends>
+</component>
