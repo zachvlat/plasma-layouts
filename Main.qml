@@ -124,10 +124,10 @@ ApplicationWindow {
                 LayoutCard {
                     Layout.fillWidth: true
                     Layout.preferredHeight: window.width < 600 ? 200 : window.width < 1200 ? 280 : 320
-                    layoutName: "Windows"
+                    layoutName: "Redmond"
                     layoutIcon: "🪟"
                     layoutDescription: "Windows 11 inspired taskbar and start menu"
-                    onApplyClicked: layoutManager.applyLayout("Windows")
+                    onApplyClicked: layoutManager.applyLayout("Redmond")
                 }
 
                 LayoutCard {
@@ -137,6 +137,30 @@ ApplicationWindow {
                     layoutIcon: "⚡"
                     layoutDescription: "Window manager focused minimal layout"
                     onApplyClicked: layoutManager.applyLayout("WM")
+                }
+                LayoutCard {
+                    Layout.fillWidth: true
+                    Layout.preferredHeight: window.width < 600 ? 200 : window.width < 1200 ? 280 : 320
+                    layoutName: "Windows"
+                    layoutIcon: "🪟"
+                    layoutDescription: "Windows Like"
+                    onApplyClicked: layoutManager.applyLayout("Windows")
+                }
+                LayoutCard {
+                    Layout.fillWidth: true
+                    Layout.preferredHeight: window.width < 600 ? 200 : window.width < 1200 ? 280 : 320
+                    layoutName: "NeoCosmic"
+                    layoutIcon: "☄️"
+                    layoutDescription: "Cosmic Like"
+                    onApplyClicked: layoutManager.applyLayout("NeoCosmic")
+                }
+                LayoutCard {
+                    Layout.fillWidth: true
+                    Layout.preferredHeight: window.width < 600 ? 200 : window.width < 1200 ? 280 : 320
+                    layoutName: "Macos"
+                    layoutIcon: "🍎"
+                    layoutDescription: "MacOS Like"
+                    onApplyClicked: layoutManager.applyLayout("Macos")
                 }
             }
 

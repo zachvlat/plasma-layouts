@@ -20,6 +20,13 @@ qt_add_qml_module(appplasma_layouts
         LayoutCard.qml
     RESOURCES
         assets/icon.svg
+        assets/Macos/plasma-org.kde.plasma.desktop-appletsrc
+        assets/Cosmic/plasma-org.kde.plasma.desktop-appletsrc
+        assets/Windows/plasma-org.kde.plasma.desktop-appletsrc
+        assets/Ubuntu/plasma-org.kde.plasma.desktop-appletsrc
+        assets/Redmond/plasma-org.kde.plasma.desktop-appletsrc
+        assets/NeoCosmic/plasma-org.kde.plasma.desktop-appletsrc
+        assets/WM/plasma-org.kde.plasma.desktop-appletsrc
 )
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.
