@@ -15,14 +15,13 @@ A simple yet powerful tool that allows you to easily manage and switch between d
 - **Multi-language Support**: Available in multiple languages
 - **Flatpak Support**: Install and run as a sandboxed application
 
-## Installation
+## Building
 
 ### Flatpak (Recommended)
 
    ```bash
    flatpak run org.flatpak.Builder --force-clean --repo=repo build-flatpak org.zachvlat.plasmalayouts.json
    flatpak build-bundle repo org.zachvlat.plasmalayouts.flatpak org.zachvlat.plasmalayouts
-
    ```
 
 ## Usage
@@ -33,40 +32,18 @@ Via Flatpak:
 ```bash
 flatpak run org.zachvlat.plasmalayouts
 ```
-
-Via system installation:
+After choosing your layout run through KRunner (Alt + Space)
 ```bash
-./plasma_layouts
+plasmashell --replace
 ```
 
-### Applying Layouts
-
-1. Launch the application
-2. Browse the available layouts in the main interface
-3. Click on any layout to preview it
-4. Click "Apply" to set the layout
-5. Your current configuration will be automatically backed up
-
-### Creating Custom Layouts
-
-1. Configure your Plasma desktop exactly as you want it
-2. Export the configuration using the "Save Current Layout" feature
-3. Give your layout a name and description
-4. Your custom layout will appear in the main interface
+Your current configuration will be automatically backed up
 
 ## Configuration
 
 Layouts are stored as Plasma configuration files in:
 - `~/.config/plasma-org.kde.plasma.desktop-appletsrc` (main configuration)
 - Backup files are stored with timestamp in `~/.config/plasma-layouts/backups/`
-
-### Contributing
-
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
 
 ## Requirements
 
