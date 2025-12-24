@@ -19,40 +19,10 @@ A simple yet powerful tool that allows you to easily manage and switch between d
 
 ### Flatpak (Recommended)
 
-1. Add Flathub repository if you haven't already:
-   ```bash
-   flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
-   ```
-
-2. Install the KDE Platform runtime (required):
-   ```bash
-   flatpak install flathub org.kde.Platform//6.8 org.kde.Sdk//6.8
-   ```
-
-3. Build and install from source:
    ```bash
    flatpak run org.flatpak.Builder --force-clean --repo=repo build-flatpak org.zachvlat.plasmalayouts.json
-   flatpak install --user org.zachvlat.plasmalayouts
-   ```
+   flatpak build-bundle repo org.zachvlat.plasmalayouts.flatpak org.zachvlat.plasmalayouts
 
-### Building from Source
-
-1. Install dependencies:
-   ```bash
-   # Ubuntu/Debian
-   sudo apt install qt6-base-dev qt6-declarative-dev cmake extra-cmake-modules
-   
-   # Fedora
-   sudo dnf install qt6-qtbase-devel qt6-qtdeclarative-devel cmake extra-cmake-modules
-   ```
-
-2. Clone and build:
-   ```bash
-   git clone https://github.com/zachvlat/plasma-layouts.git
-   cd plasma-layouts
-   mkdir build && cd build
-   cmake ..
-   make
    ```
 
 ## Usage
@@ -90,33 +60,6 @@ Layouts are stored as Plasma configuration files in:
 - `~/.config/plasma-org.kde.plasma.desktop-appletsrc` (main configuration)
 - Backup files are stored with timestamp in `~/.config/plasma-layouts/backups/`
 
-## Development
-
-### Project Structure
-
-```
-.
-├── main.cpp              # Application entry point
-├── layouthandler.{cpp,h}  # Layout management logic
-├── Main.qml              # Main application interface
-├── LayoutCard.qml        # Layout card component
-├── assets/               # Pre-configured layouts
-│   ├── Cosmic/
-│   ├── Ubuntu/
-│   ├── Windows/
-│   └── WM/
-└── org.zachvlat.plasmalayouts.json  # Flatpak manifest
-```
-
-### Building Flatpak Bundle
-
-To create a distributable .flatpak file:
-
-```bash
-flatpak run org.flatpak.Builder --force-clean --repo=repo build-flatpak org.zachvlat.plasmalayouts.json
-flatpak build-bundle repo org.zachvlat.plasmalayouts.flatpak org.zachvlat.plasmalayouts
-```
-
 ### Contributing
 
 1. Fork the repository
@@ -131,25 +74,6 @@ flatpak build-bundle repo org.zachvlat.plasmalayouts.flatpak org.zachvlat.plasma
 - **KDE Plasma 6.8+**: Desktop environment
 - **CMake 3.16+**: Build system
 - **Linux**: Supported operating system
-
-## Troubleshooting
-
-### Common Issues
-
-**Layout not applying correctly:**
-- Ensure Plasma is running
-- Try restarting Plasma with `plasmashell --replace`
-- Check file permissions in `~/.config/`
-
-**Flatpak not working:**
-- Verify all dependencies are installed
-- Check if the KDE runtime is installed
-- Ensure proper permissions for home directory access
-
-**Application crashes:**
-- Check system logs with `journalctl -f`
-- Verify Qt and Plasma versions are compatible
-- Report issues on GitHub with detailed logs
 
 ## License
 
@@ -166,7 +90,3 @@ This project is licensed under the GNU General Public License v3.0 - see the [LI
 - KDE Plasma team for the excellent desktop environment
 - Qt team for the powerful UI framework
 - All contributors and users who help improve this project
-
----
-
-**Plasma Layout Manager** - Transform your desktop with ease 🎨✨

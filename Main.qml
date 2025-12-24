@@ -164,27 +164,7 @@ ApplicationWindow {
                 }
             }
 
-            // Status Bar
-            Rectangle {
-                Layout.fillWidth: true
-                Layout.topMargin: window.width < 600 ? 12 : 16
-                Layout.bottomMargin: window.width < 600 ? 12 : 16
-                height: window.width < 600 ? 40 : 48
-                color: palette.base
-                radius: cardRadius
-                border.color: palette.mid
-                border.width: 1
 
-                Text {
-                    anchors.centerIn: parent
-                    text: layoutApplied ? 
-                          qsTr("Layout %1 applied! Please logout and login to apply changes").arg(appliedLayout) :
-                          layoutManager.statusText
-                    font.pixelSize: window.width < 600 ? 12 : 14
-                    color: layoutApplied ? "#4caf50" :
-                          layoutManager.statusText.includes("Failed") ? "#f44336" : palette.text
-                }
-            }
         }
     }
 

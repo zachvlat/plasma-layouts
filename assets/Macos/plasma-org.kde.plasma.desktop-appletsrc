@@ -5,9 +5,9 @@ RightButton;NoModifier=org.kde.contextmenu
 RightButton;NoModifier=org.kde.contextmenu
 
 [Containments][1]
-ItemGeometries-1280x800=
+
 ItemGeometriesHorizontal=
-activityId=b8cc9879-076b-4342-bdaf-a7849381570d
+activityId=
 formfactor=0
 immutability=1
 lastScreen=0
@@ -27,7 +27,6 @@ wallpaperplugin=org.kde.image
 [Containments][2][Applets][22]
 immutability=1
 plugin=org.kde.plasma.digitalclock
-transient=true
 
 [Containments][2][Applets][22][Configuration]
 popupHeight=400
@@ -39,12 +38,10 @@ fontWeight=400
 [Containments][2][Applets][29]
 immutability=1
 plugin=org.kde.plasma.panelspacer
-transient=true
 
 [Containments][2][Applets][3]
 immutability=1
 plugin=org.kde.plasma.kickoff
-transient=true
 
 [Containments][2][Applets][3][Configuration]
 PreloadWeight=100
@@ -63,7 +60,6 @@ systemFavorites=suspend\\,hibernate\\,reboot\\,shutdown
 [Containments][2][Applets][30]
 immutability=1
 plugin=org.kde.plasma.panelspacer
-transient=true
 
 [Containments][2][Applets][31]
 immutability=1
@@ -75,7 +71,6 @@ launchers=applications:systemsettings.desktop
 [Containments][2][Applets][6]
 immutability=1
 plugin=org.kde.plasma.marginsseparator
-transient=true
 
 [Containments][2][General]
 AppletOrder=31

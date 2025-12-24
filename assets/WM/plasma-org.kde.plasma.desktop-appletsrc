@@ -23,7 +23,6 @@ DialogHeight=956
 DialogWidth=1920
 
 [Containments][1][Wallpaper][org.kde.image][General]
-Image=file:///home/zatsando/.var/app/io.github.davidoc26.wallpaper_selector/data/wallhaven-lyye22.jpg
 SlidePaths=/usr/share/wallpapers/
 
 [Containments][58]
@@ -171,5 +170,5 @@ favoritesPortedToKAstats=true
 AppletOrder=84;62;83;63;78
 
 [ScreenMapping]
-itemsOnDisabledScreens=0,eedf6496-df8d-4f55-bef3-e09a334474cf,2,file:///home/zatsando/Pictures/wallhaven-oggv5m.jpg,file:///home/zatsando/Pictures/wallhaven-e88v9o.jpg
+itemsOnDisabledScreens=
 screenMapping=
