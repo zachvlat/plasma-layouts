@@ -4,9 +4,9 @@ project(plasma_layouts VERSION 0.1 LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-find_package(Qt6 REQUIRED COMPONENTS Quick Core)
+find_package(Qt6 REQUIRED COMPONENTS Quick Core Widgets)
 
-qt_standard_project_setup(REQUIRES 6.8)
+qt_standard_project_setup(REQUIRES 6.9)
 
 qt_add_executable(appplasma_layouts
     main.cpp
@@ -42,7 +42,7 @@ set_target_properties(appplasma_layouts PROPERTIES
 )
 
 target_link_libraries(appplasma_layouts
-    PRIVATE Qt6::Quick Qt6::Core
+    PRIVATE Qt6::Quick Qt6::Core Qt6::Widgets
 )
 
 # Set application icon

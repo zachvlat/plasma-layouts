@@ -40,7 +40,9 @@ ApplicationWindow {
                 text: qsTr("Exit")
                 onTriggered: Qt.quit()
             }
-            MenuSeparator {}
+        }
+        Menu {
+            title: qsTr("Help")
             Action {
                 text: qsTr("About")
                 onTriggered: aboutDialog.open()
@@ -247,7 +249,7 @@ ApplicationWindow {
             }
 
             Text {
-                text: qsTr("Version 0.1")
+                text: qsTr("Version 1.0")
                 font.pixelSize: 14
                 color: palette.text
                 Layout.alignment: Qt.AlignHCenter

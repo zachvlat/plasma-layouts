@@ -20,6 +20,7 @@ A simple yet powerful tool that allows you to easily manage and switch between d
 ### Flatpak (Recommended)
 
    ```bash
+   flatpak install org.kde.Sdk/x86_64/6.9 -y
    flatpak run org.flatpak.Builder --force-clean --repo=repo build-flatpak org.zachvlat.plasmalayouts.json
    flatpak build-bundle repo org.zachvlat.plasmalayouts.flatpak org.zachvlat.plasmalayouts
    ```
@@ -47,8 +48,8 @@ Layouts are stored as Plasma configuration files in:
 
 ## Requirements
 
-- **Qt 6.8+**: Core UI framework
-- **KDE Plasma 6.8+**: Desktop environment
+- **Qt 6.9+**: Core UI framework
+- **KDE Plasma 6.9+**: Desktop environment
 - **CMake 3.16+**: Build system
 - **Linux**: Supported operating system
 

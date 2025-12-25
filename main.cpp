@@ -1,11 +1,11 @@
-#include <QGuiApplication>
+#include <QApplication>
 #include <QQmlApplicationEngine>
 #include <QIcon>
 #include "layouthandler.h"
 
 int main(int argc, char *argv[])
 {
-    QGuiApplication app(argc, argv);
+    QApplication app(argc, argv);
 
     // Set application icon
     app.setWindowIcon(QIcon(QIcon::fromTheme("org.kde.plasmalayouts")));
