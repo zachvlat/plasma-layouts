@@ -123,14 +123,7 @@ ApplicationWindow {
                     onApplyClicked: layoutManager.applyLayout("Ubuntu")
                 }
 
-                LayoutCard {
-                    Layout.fillWidth: true
-                    Layout.preferredHeight: window.width < 600 ? 200 : window.width < 1200 ? 280 : 320
-                    layoutName: "Redmond"
-                    layoutIcon: "🪟"
-                    layoutDescription: "Windows 11 inspired taskbar and start menu"
-                    onApplyClicked: layoutManager.applyLayout("Redmond")
-                }
+
 
                 LayoutCard {
                     Layout.fillWidth: true

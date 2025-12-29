@@ -24,7 +24,7 @@ qt_add_qml_module(appplasma_layouts
         assets/Cosmic/plasma-org.kde.plasma.desktop-appletsrc
         assets/Windows/plasma-org.kde.plasma.desktop-appletsrc
         assets/Ubuntu/plasma-org.kde.plasma.desktop-appletsrc
-        assets/Redmond/plasma-org.kde.plasma.desktop-appletsrc
+
         assets/NeoCosmic/plasma-org.kde.plasma.desktop-appletsrc
         assets/WM/plasma-org.kde.plasma.desktop-appletsrc
 )
