@@ -14,13 +14,43 @@ LayoutManager::LayoutManager(QObject *parent)
 void LayoutManager::applyLayout(const QString &layoutName)
 {
     setStatusText("Applying " + layoutName + " layout...");
-    
+
     if (copyLayoutFile(layoutName)) {
         setStatusText(layoutName + " layout applied successfully!");
+        // Restart Plasma shell
+        QProcess::execute("plasmashell", QStringList() << "--replace");
         emit layoutChanged(true, layoutName);
     } else {
         setStatusText("Failed to apply " + layoutName + " layout");
         emit layoutChanged(false, layoutName);
+    }
+}
+
+
+void LayoutManager::restoreBackup()
+{
+    setStatusText("Restoring backup layout...");
+
+    QString sourcePath = getPlasmaConfigPath() + ".backup";
+    QString targetPath = getPlasmaConfigPath();
+
+    QFile backupFile(sourcePath);
+    if (!backupFile.exists()) {
+        setStatusText("No backup file found");
+        emit layoutChanged(false, "Backup");
+        return;
+    }
+
+    QFile::remove(targetPath); // Remove current
+
+    if (backupFile.copy(targetPath)) {
+        setStatusText("Backup restored successfully!");
+        // Restart Plasma shell
+        QProcess::execute("plasmashell", QStringList() << "--replace");
+        emit layoutChanged(true, "Backup");
+    } else {
+        setStatusText("Failed to restore backup");
+        emit layoutChanged(false, "Backup");
     }
 }
 

@@ -18,6 +18,7 @@ public:
     explicit LayoutManager(QObject *parent = nullptr);
 
     Q_INVOKABLE void applyLayout(const QString &layoutName);
+    Q_INVOKABLE void restoreBackup();
 
     QString statusText() const { return m_statusText; }
     void setStatusText(const QString &text);

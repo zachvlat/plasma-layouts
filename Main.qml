@@ -157,6 +157,32 @@ ApplicationWindow {
                     layoutDescription: "MacOS Like"
                     onApplyClicked: layoutManager.applyLayout("Macos")
                 }
+             }
+
+            // Restore Backup Button
+            Button {
+                text: qsTr("Restore Backup")
+                Layout.alignment: Qt.AlignHCenter
+                Layout.topMargin: 20
+                Layout.preferredWidth: 200
+                Layout.preferredHeight: 50
+
+                background: Rectangle {
+                    color: parent.down ? palette.button.darker(110) :
+                           parent.hovered ? palette.button.lighter(110) : palette.button
+                    radius: 8
+                }
+
+                contentItem: Text {
+                    text: parent.text
+                    color: palette.text
+                    font.pixelSize: 16
+                    font.bold: true
+                    horizontalAlignment: Text.AlignHCenter
+                    verticalAlignment: Text.AlignVCenter
+                }
+
+                onClicked: layoutManager.restoreBackup()
             }
 
 
@@ -180,7 +206,9 @@ ApplicationWindow {
             width: parent.width - 40
 
             Text {
-                text: qsTr("The %1 layout has been applied successfully.\n\nPlease logout and login again for the changes to take effect.").arg(appliedLayout)
+                text: appliedLayout === "Backup" ?
+                      qsTr("Backup has been restored successfully.\n\nPlasma shell has been restarted automatically.") :
+                      qsTr("The %1 layout has been applied successfully.\n\nPlasma shell has been restarted automatically.").arg(appliedLayout)
                 wrapMode: Text.WordWrap
                 font.pixelSize: 14
                 color: palette.text
