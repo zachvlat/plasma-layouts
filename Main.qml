@@ -69,8 +69,7 @@ ApplicationWindow {
             width: parent.width
             spacing: window.width < 600 ? 15 : window.spacing
             
-            // Ensure the layout can expand beyond viewport
-            implicitHeight: childrenRect.height
+            // Remove implicitHeight binding to prevent loop
 
             // Header
             ColumnLayout {

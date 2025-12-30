@@ -10,7 +10,11 @@
         "--socket=wayland",
         "--device=dri",
         "--filesystem=home",
-        "--persist=.config"
+        "--persist=.config",
+        "--filesystem=host:ro",
+        "--system-talk-name=org.kde.plasmashell",
+        "--talk-name=org.kde.plasmashell",
+        "--env=PATH=/usr/bin:/bin:/app/bin"
     ],
     "modules": [
         {

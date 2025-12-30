@@ -17,8 +17,10 @@ void LayoutManager::applyLayout(const QString &layoutName)
 
     if (copyLayoutFile(layoutName)) {
         setStatusText(layoutName + " layout applied successfully!");
-        // Restart Plasma shell
-        QProcess::execute("plasmashell", QStringList() << "--replace");
+        // Restart Plasma shell (try host-spawn for Flatpak support)
+        if (QProcess::execute("host-spawn", QStringList() << "plasmashell" << "--replace") != 0) {
+            QProcess::execute("plasmashell", QStringList() << "--replace");
+        }
         emit layoutChanged(true, layoutName);
     } else {
         setStatusText("Failed to apply " + layoutName + " layout");
@@ -45,8 +47,10 @@ void LayoutManager::restoreBackup()
 
     if (backupFile.copy(targetPath)) {
         setStatusText("Backup restored successfully!");
-        // Restart Plasma shell
-        QProcess::execute("plasmashell", QStringList() << "--replace");
+        // Restart Plasma shell (try host-spawn for Flatpak support)
+        if (QProcess::execute("host-spawn", QStringList() << "plasmashell" << "--replace") != 0) {
+            QProcess::execute("plasmashell", QStringList() << "--replace");
+        }
         emit layoutChanged(true, "Backup");
     } else {
         setStatusText("Failed to restore backup");
