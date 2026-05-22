@@ -2,9 +2,11 @@
 #include <QStandardPaths>
 #include <QDir>
 #include <QFile>
+#include <QFileInfo>
 #include <QTextStream>
 #include <QDebug>
 #include <QCoreApplication>
+#include <algorithm>
 
 LayoutManager::LayoutManager(QObject *parent)
     : QObject(parent)
@@ -17,7 +19,6 @@ void LayoutManager::applyLayout(const QString &layoutName)
 
     if (copyLayoutFile(layoutName)) {
         setStatusText(layoutName + " layout applied successfully!");
-        // Restart Plasma shell (try host-spawn for Flatpak support)
         if (QProcess::execute("host-spawn", QStringList() << "plasmashell" << "--replace") != 0) {
             QProcess::execute("plasmashell", QStringList() << "--replace");
         }
@@ -43,11 +44,10 @@ void LayoutManager::restoreBackup()
         return;
     }
 
-    QFile::remove(targetPath); // Remove current
+    QFile::remove(targetPath);
 
     if (backupFile.copy(targetPath)) {
         setStatusText("Backup restored successfully!");
-        // Restart Plasma shell (try host-spawn for Flatpak support)
         if (QProcess::execute("host-spawn", QStringList() << "plasmashell" << "--replace") != 0) {
             QProcess::execute("plasmashell", QStringList() << "--replace");
         }
@@ -71,54 +71,87 @@ bool LayoutManager::copyLayoutFile(const QString &layoutName)
     QString sourcePath = getAssetsPath() + "/" + layoutName + "/plasma-org.kde.plasma.desktop-appletsrc";
     QString targetPath = getPlasmaConfigPath();
     QString backupPath = targetPath + ".backup";
-    
+
     qDebug() << "Copying from:" << sourcePath;
     qDebug() << "Copying to:" << targetPath;
-    
+
     QFile sourceFile(sourcePath);
     if (!sourceFile.exists()) {
         qDebug() << "Source file does not exist:" << sourcePath;
         return false;
     }
-    
-    // Create config directory if it doesn't exist
+
     QDir configDir(QFileInfo(targetPath).absolutePath());
     if (!configDir.exists()) {
         if (!configDir.mkpath(".")) {
             qDebug() << "Failed to create config directory:" << configDir.absolutePath();
         }
     }
-    
-    // Create backup of current config
+
     if (QFile::exists(targetPath)) {
         QFile::remove(backupPath);
         if (!QFile::copy(targetPath, backupPath)) {
             qDebug() << "Failed to create backup, but continuing...";
-            // Don't fail the operation, just log the issue
         }
     }
-    
-    QFile::remove(targetPath); // Remove existing file
-    
-    if (sourceFile.copy(targetPath)) {
-        QFile targetFile(targetPath);
-        if (targetFile.exists()) {
-            targetFile.setPermissions(targetFile.permissions() | QFileDevice::WriteOwner);
-            qDebug() << "File copied successfully to:" << targetPath;
-            return true;
-        } else {
-            qDebug() << "File copy reported success but target doesn't exist:" << targetPath;
+
+    if (!sourceFile.open(QIODevice::ReadOnly | QIODevice::Text)) {
+        qDebug() << "Failed to open source file:" << sourcePath;
+        return false;
+    }
+    QString content = QString::fromUtf8(sourceFile.readAll());
+    sourceFile.close();
+
+    // Strip lastScreen lines so panels don't all lock to screen 0 on multi-monitor
+    QStringList lines = content.split('\n');
+    lines.erase(std::remove_if(lines.begin(), lines.end(), [](const QString &line) {
+        return line.trimmed().startsWith("lastScreen=");
+    }), lines.end());
+    content = lines.join('\n');
+
+    QFile existingConfig(targetPath);
+    if (existingConfig.exists() && existingConfig.open(QIODevice::ReadOnly | QIODevice::Text)) {
+        QString existingContent = QString::fromUtf8(existingConfig.readAll());
+        existingConfig.close();
+
+        int mappingStart = existingContent.indexOf(QStringLiteral("[ScreenMapping]"));
+        if (mappingStart != -1) {
+            int mappingEnd = existingContent.indexOf(QStringLiteral("\n["), mappingStart + 1);
+            QString screenMapping;
+            if (mappingEnd != -1)
+                screenMapping = existingContent.mid(mappingStart, mappingEnd - mappingStart);
+            else
+                screenMapping = existingContent.mid(mappingStart);
+
+            int newStart = content.indexOf(QStringLiteral("[ScreenMapping]"));
+            if (newStart != -1) {
+                int newEnd = content.indexOf(QStringLiteral("\n["), newStart + 1);
+                if (newEnd != -1)
+                    content = content.left(newStart) + screenMapping + content.mid(newEnd);
+                else
+                    content = content.left(newStart) + screenMapping;
+            } else {
+                content += QStringLiteral("\n") + screenMapping;
+            }
         }
+    }
+
+    QFile::remove(targetPath);
+    QFile targetFile(targetPath);
+    if (targetFile.open(QIODevice::WriteOnly | QIODevice::Text)) {
+        targetFile.write(content.toUtf8());
+        targetFile.close();
+        targetFile.setPermissions(targetFile.permissions() | QFileDevice::WriteOwner);
+        qDebug() << "File written successfully to:" << targetPath;
+        return true;
     } else {
-        qDebug() << "Failed to copy file from" << sourcePath << "to" << targetPath;
+        qDebug() << "Failed to write file:" << targetPath;
+        return false;
     }
-    
-    return false;
 }
 
 QString LayoutManager::getPlasmaConfigPath() const
 {
-    // Force home directory config path, ignoring Flatpak sandbox
     return QDir::homePath() + "/.config/plasma-org.kde.plasma.desktop-appletsrc";
 }
 
@@ -127,6 +160,5 @@ QString LayoutManager::getPlasmaConfigPath() const
 QString LayoutManager::getAssetsPath() const
 {
     QString appDir = QCoreApplication::applicationDirPath();
-    // For Flatpak, assets are in /app/bin/assets
     return appDir + "/assets";
 }
